@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dayjs": "^1.11.7",
+    "phosphor-react": "^1.4.1",
     "preact": "^10.11.3"
   },
   "devDependencies": {
