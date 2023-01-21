@@ -20,7 +20,7 @@ if (amountOfDaysToFill > 0) {
 
 export const SummaryTable = () => {
   return (
-    <div className="w-full flex">
+    <div className="w-full flex" >
       <div className="grid grid-rows-7 grid-flow-row gap-3">
         {weekDays.map((day, i) => (
           <div
@@ -37,9 +37,11 @@ export const SummaryTable = () => {
           <HabitDay
             key={i}
             reachedHabitDate={Boolean(date)}
+            amount={5}
+            completed={Math.round(Math.random() * 5)}
           />
         ))}
       </div>
-    </div>
+    </div >
   )
 }
