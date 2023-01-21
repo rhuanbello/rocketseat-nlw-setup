@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { Text, View, ScrollView } from "react-native";
 import { HabitDay, DAY_SIZE } from "../components/HabitDay";
 import { Header } from "../components/Header";
@@ -19,6 +20,8 @@ if (amountOfDaysToFill > 0) {
 }
 
 export function Home() {
+  const { navigate } = useNavigation();
+
   return (
     <View className="flex-1 bg-background px-8 pt-16">
       <Header />
@@ -46,6 +49,9 @@ export function Home() {
             <HabitDay
               key={i}
               reachedHabitDate={Boolean(date)}
+              onPress={() => {
+                if (date) navigate('habit', { date: date.toISOString() })
+              }}
             />
           ))}
         </View>
