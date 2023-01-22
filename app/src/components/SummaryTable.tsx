@@ -29,6 +29,7 @@ export const SummaryTable = () => {
     api
       .get('summary')
       .then(({ data }) => {
+        console.log(data)
         setSummary(data)
       })
   }

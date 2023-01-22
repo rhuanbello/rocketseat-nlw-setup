@@ -38,6 +38,7 @@ export const Habit = () => {
         <View className="mt-6">
           {['Beber 2L de água', 'Caminhar'].map((text) => (
             <Checkbox
+              key={text}
               title={text}
               checked={true}
             />

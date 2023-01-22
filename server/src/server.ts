@@ -8,7 +8,8 @@ app.register(cors)
 app.register(appRoute)
 
 app.listen({
-  port: 7000
+  port: 7000,
+  host: "0.0.0.0"
 }).then(() => {
   console.log('server running on port 7000')
 })

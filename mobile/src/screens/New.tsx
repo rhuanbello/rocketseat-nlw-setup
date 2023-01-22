@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { BackButton } from "../components/BackButton";
 import { Checkbox } from "../components/Checkbox";
 import { Feather } from '@expo/vector-icons';
 import colors from "tailwindcss/colors";
+import { api } from "../lib/axios";
 
 const availableWeekDays = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
 
 export const New = () => {
   const [weekDays, setWeekDays] = useState<number[]>([]);
+  const [title, setTitle] = useState<string>('');
 
   const handleToggleWeekDays = (weekDayIndex: number) => {
     const weekDaysPrevState = [...weekDays];
@@ -21,6 +23,26 @@ export const New = () => {
     }
 
     setWeekDays(weekDaysPrevState);
+  }
+
+  const postHabit = () => {
+    if (!title.trim() || weekDays.length === 0) {
+      Alert.alert('Novo Hábito', 'Informe o título do hábito e escolha a periodicidade');
+    }
+
+    api
+      .post('/habit', {
+        title,
+        weekDays,
+      })
+      .then(() => {
+        setTitle('');
+        setWeekDays([]);
+        Alert.alert('Novo hábito', 'Hábito criado com sucesso');
+      })
+      .catch(( error ) => {
+        Alert.alert('Ops', 'Não foi possível criar um novo hábito');
+      })
   }
 
   return (
@@ -43,6 +65,9 @@ export const New = () => {
           className="h-12 pl-4 rounded-lg mt-3 bg-zinc-900 text-white border-2 border-zinc-800 focus:border-green-600"
           placeholder="Exercícios, dormir bem, etc..."
           placeholderTextColor={colors.zinc[400]}
+          onChangeText={setTitle}
+          value={title}
+          autoFocus
         />
 
         <Text className="mt-4 mb-3 text-white font-semibold text-base">
@@ -68,7 +93,7 @@ export const New = () => {
             color={colors.white}
           />
 
-          <Text className="font-semibold text-base text-white ml-2">
+          <Text className="font-semibold text-base text-white ml-2" onPress={postHabit}>
             Confirmar
           </Text>
         </TouchableOpacity>
