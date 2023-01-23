@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Habit {
@@ -50,4 +51,5 @@ model DayHabit {
 
   @@unique([day_id, habit_id])
   @@map("day_habits")
+  @@index([habit_id])
 }
