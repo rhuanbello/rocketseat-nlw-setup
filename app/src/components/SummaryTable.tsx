@@ -64,6 +64,7 @@ export const SummaryTable = () => {
               {...(date && { date: date })}
               amount={dayInSummary?.amount}
               completed={dayInSummary?.completed}
+              getSummary={getSummary}
             />
           )
         })}

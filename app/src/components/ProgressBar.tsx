@@ -13,7 +13,7 @@ export const ProgressBar = ({ progress }: ProgressBarProps) => {
         aria-label="Progresso de hábitos completados neste dia"
         aria-valuenow={75}
         role="progressbar"
-        className="h-full rounded-xl bg-violet-600 w-3/4"
+        className="h-full rounded-xl bg-violet-600 w-3/4 transition-all duration-500"
         style={progressStyles}
       />
     </div>
