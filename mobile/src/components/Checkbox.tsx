@@ -2,6 +2,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps, View } from "react-nativ
 import { Feather } from '@expo/vector-icons'
 import colors from "tailwindcss/colors"
 import clsx from 'clsx'
+import Animated, {  ZoomIn, ZoomOut } from 'react-native-reanimated'
 
 type CheckboxProps = {
   title: string;
@@ -16,11 +17,13 @@ export const Checkbox = ({ title, checked, ...props }: CheckboxProps) => {
       className="flex-row mb-2 items-center"
       {...props}
     >
-      <View
+      <Animated.View
         className={clsx('h-8 w-8 rounded-lg', {
           'items-center justify-center bg-green-500': checked,
           'bg-zinc-800': !checked
         })}
+        entering={ZoomIn}
+        exiting={ZoomOut}
       >
         {checked && (
           <Feather
@@ -29,7 +32,7 @@ export const Checkbox = ({ title, checked, ...props }: CheckboxProps) => {
             color={colors.white}
           />
         )}
-      </View>
+      </Animated.View>
 
       <Text className="text-white text-base ml-3 font-semibold">
         {title}

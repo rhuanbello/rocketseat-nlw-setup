@@ -27,7 +27,7 @@ export const New = () => {
 
   const postHabit = () => {
     if (!title.trim() || weekDays.length === 0) {
-      Alert.alert('Novo Hábito', 'Informe o título do hábito e escolha a periodicidade');
+      return Alert.alert('Novo Hábito', 'Informe o título do hábito e escolha a periodicidade');
     }
 
     api
